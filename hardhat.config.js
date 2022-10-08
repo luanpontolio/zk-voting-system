@@ -18,4 +18,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  */
 module.exports = {
   solidity: "0.8.4",
+  networks: {
+    mumbai: {
+      url: `${process.env.ALCHEMY_MUMBAI_URL}`,
+      accounts: [`0x${process.env.MUMBAI_PRIVATE_KEY}`],
+    }
+  }
 };
