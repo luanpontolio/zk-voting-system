@@ -1,10 +1,18 @@
 async function main() {
-  const verifierContract = "PresidentElection";
-  const PresidentElection = await ethers.getContractFactory(verifierContract);
-  const presidentElectionContract = await PresidentElection.deploy();
+  const ballotContractName = "Ballot";
+  const govVerifierContratName = "GovVerifier";
 
-  await presidentElectionContract.deployed();
-  console.log(verifierName, " tx hash:", presidentElectionContract.address);
+  const Ballot = await ethers.getContractFactory(ballotContractName);
+  const ballotContract = await Ballot.deploy();
+  await ballotContract.deployed();
+
+  const GovVerifier = await ethers.getContractFactory(govVerifierContratName);
+  const govVerifier = await GovVerifier.deploy(ballotContract.address);
+
+  await ballotContract.setVerifier(govVerifier.address);
+
+  console.log(ballotContractName, " tx hash:", ballotContract.address);
+  console.log(govVerifierContratName, " tx hash:", govVerifier.address);
 }
 
 main()
