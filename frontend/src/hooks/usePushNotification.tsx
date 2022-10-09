@@ -17,8 +17,8 @@ export default function usePushNotification () {
             body: `Your vote was registered successfully`
           },
           payload: {
-            title: `[sdk-test] payload title`,
-            body: `sample msg body`,
+            title: '',
+            body: '',
             cta: '',
             img: ''
           },
