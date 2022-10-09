@@ -1,15 +1,30 @@
 {
-  "name": "hardhat-project",
+  "name": "zk-voting-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.1.1",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@nomiclabs/hardhat-etherscan": "^3.0.1",
     "chai": "^4.3.6",
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.7.1",
-    "hardhat": "^2.11.2"
+    "hardhat": "^2.11.2",
+    "hardhat-deploy": "^0.11.4",
+    "hardhat-typechain": "^0.3.5"
   },
   "dependencies": {
     "antd": "^4.23.4",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "@openzeppelin/contracts": "^4.7.3",
+    "dotenv": "^16.0.2",
+    "solidity-bytes-utils": "^0.8.0"
   }
 }
