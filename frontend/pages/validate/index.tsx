@@ -6,10 +6,12 @@ import { QRCode } from 'react-qr-svg'
 import styled from 'styled-components'
 import { DefaultTemplatePage } from '../template/DefaultTemplatePage'
 import { Alert, Card, Button } from 'antd'
+import usePushNotification from '../../src/hooks/usePushNotification'
 
 export default function Validate() {
   const [account, setAccount] = useState<any>('')
   const [web3provider, setProvider] = useState<any>();
+  const { sendNotification } = usePushNotification()
 
   const data = [
     { name: 'Dog', value: '0x446f670000000000000000000000000000000000000000000000000000000000'},
@@ -21,18 +23,18 @@ export default function Validate() {
   const connectWallet = async () => {
     try {
       const provider = new WalletConnectProvider({
+        bridge: 'https://bridge.walletconnect.org',
+        qrcode: true,
         rpc: {
           80001: 'https://tame-silent-mountain.matic-testnet.discover.quiknode.pro/4d91e902b03344e82cce2bef04a0df4d65a70eaf'
         },
+        pollingInterval: 3000
       })
       await provider.enable()
       const web3Provider = new providers.Web3Provider(provider)
-      console.log(web3Provider)
       const wallet = await provider.accounts
-      console.log(wallet);
       setAccount(wallet[0])
       setProvider(web3Provider)
-      provider.close()
     } catch (error) {
       console.error(`error: walletConnect`, error)
     }
@@ -40,6 +42,7 @@ export default function Validate() {
 
   useEffect(() => {
     if (account) return;
+
     connectWallet()
   }, [])
 
@@ -50,10 +53,15 @@ export default function Validate() {
       if (accounts[0]) {
         setAccount(accounts[0])
         setProvider(web3provider)
-      } else {
+      } else (
         setAccount('')
-      }
+      )
     })
+    web3provider.on('disconnect', () => setAccount(''))
+
+    if (account) {
+      sendNotification(account);
+    }
   }, [web3provider, account])
 
 
@@ -99,7 +107,7 @@ export default function Validate() {
       </Head>
       <DefaultTemplatePage >
         <Container>
-          {!account.lenght ? (<Button onClick={connectWallet}>connect wallet</Button>) : (
+          {!account ? (<Button onClick={connectWallet}>connect wallet</Button>) : (
             <>
               <Alert
                 description="Please only scan this QR code with the Polygon ID Wallet mobile app (other wallets are not supported)"
@@ -110,13 +118,13 @@ export default function Validate() {
               <p><a href={`iden3comm://?i_m=${btoa(JSON.stringify(qrProofRequestJson))}`}>CLICK HERE</a>{` `} or Scan QR code bellow</p>
               <br/>
               <Card>
-                  <QRCode
+                <QRCode
                   bgColor="#FFFFFF"
                   fgColor="#7f56d9"
                   level="Q"
                   style={{ width: 300 }}
                   value={JSON.stringify(qrProofRequestJson)}
-                  />
+                />
             </Card>
             </>
           )}

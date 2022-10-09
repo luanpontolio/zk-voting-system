@@ -6,7 +6,7 @@ export default function usePushNotification () {
   const Pkey = `0x${PK}`;
   const signer = new ethers.Wallet(Pkey);
 
-    const sendNotification = async() => {
+    const sendNotification = async(account: string) => {
       try {
         const apiResponse = await PushAPI.payloads.sendNotification({
           signer,
@@ -22,11 +22,11 @@ export default function usePushNotification () {
             cta: '',
             img: ''
           },
-          recipients: 'eip155:5:0xCdBE6D076e05c5875D90fa35cc85694E1EAFBBd1',
-          channel: 'eip155:5:0xD8634C39BBFd4033c0d3289C4515275102423681',
+          recipients: `eip155:80001:<${account}>`, // recipient address
+          channel: 'eip155:80001:0x00bE08a2170113b0cacCA41BBd88f69f315b38F7',
           env: 'staging'
         });
-        
+
         console.log('API repsonse: ', apiResponse);
       } catch (err) {
         console.error('Error: ', err);
