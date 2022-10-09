@@ -1,7 +1,7 @@
 import { Button, Card } from "antd"
 import Meta from "antd/lib/card/Meta"
 import styled from "styled-components"
-import useConnectWallet from "../hooks/connectWallet"
+import useConnectWallet from "../../src/hooks/connectWallet"
 import { DefaultTemplatePage } from "../template/DefaultTemplatePage"
 
 export default function Vote() {

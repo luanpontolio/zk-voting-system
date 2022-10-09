@@ -56,7 +56,7 @@ export default function Validate() {
               type="info"
               showIcon
             />
-          <h2>Connect Polygon ID</h2>
+          <h2>Connect Polygon ID for QR or </h2>
           <Card>
              <QRCode
               bgColor="#FFFFFF"
