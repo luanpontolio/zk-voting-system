@@ -1,0 +1,36 @@
+{
+  "name": "zk-voting-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@cityofzion/wallet-connect-sdk-react": "^2.1.2",
+    "@pushprotocol/restapi": "^0.1.1",
+    "@types/styled-components": "^5.1.26",
+    "@usedapp/core": "^1.1.5",
+    "@walletconnect/client": "^1.8.0",
+    "@walletconnect/node": "^1.0.0",
+    "@walletconnect/qrcode-modal": "^1.8.0",
+    "@walletconnect/web3-provider": "^1.8.0",
+    "antd": "^4.23.2",
+    "ethers": "^5.7.1",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-qr-svg": "^2.4.0",
+    "styled-components": "^5.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "18.8.3",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "eslint": "8.25.0",
+    "eslint-config-next": "12.3.1",
+    "typescript": "4.8.4"
+  }
+}
