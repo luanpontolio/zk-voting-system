@@ -1,4 +1,9 @@
 require("@nomiclabs/hardhat-waffle");
+require('hardhat-deploy');
+require('@nomiclabs/hardhat-ethers');
+require("@nomiclabs/hardhat-etherscan");
+require('hardhat-typechain');
+require('dotenv').config();
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -18,4 +23,16 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  */
 module.exports = {
   solidity: "0.8.4",
+  defaultNetwork: "mumbai",
+  etherscan: {
+    apiKey: {
+      polygonMumbai: "HP9DXW3UK4TEHZD78G1H9WWHAIY83YMWR9"
+    }
+  },
+  networks: {
+    mumbai: {
+      url: `${process.env.ALCHEMY_MUMBAI_URL}`,
+      accounts: [`0x${process.env.MUMBAI_PRIVATE_KEY}`],
+    }
+  }
 };
