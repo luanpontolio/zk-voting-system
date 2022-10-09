@@ -1,16 +1,17 @@
 import { Button, Card } from "antd"
 import Meta from "antd/lib/card/Meta"
 import styled from "styled-components"
-import useConnectWallet from "../../src/hooks/connectWallet"
+import WalletButton from "../../src/contracts/wallet/connectWallet"
+import useConnectWallet from "../../src/contracts/wallet/connectWallet"
 import { DefaultTemplatePage } from "../template/DefaultTemplatePage"
 
 export default function Vote() {
-  const { walletAccount } = useConnectWallet()
 
-  console.log('account', walletAccount)
+
   
   return (
       <DefaultTemplatePage>
+        <WalletButton />
         <Content>
           <CardContent
             cover={
