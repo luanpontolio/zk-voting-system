@@ -1,7 +1,7 @@
 async function main() {
   const ballotContractName = "Ballot";
   const govVerifierContratName = "GovVerifier";
-
+  console.log('esta ak')
   const Ballot = await ethers.getContractFactory(ballotContractName);
   const ballotContract = await Ballot.deploy();
   await ballotContract.deployed();

@@ -31,8 +31,8 @@ module.exports = {
   },
   networks: {
     mumbai: {
-      url: `${process.env.ALCHEMY_MUMBAI_URL}`,
-      accounts: [`0x${process.env.MUMBAI_PRIVATE_KEY}`],
+      url: `https://polygon-mumbai.gateway.pokt.network/v1/lb/e2e41cd96bb6f357b9fcedc2`,
+      accounts: [`e07da01336815f96fb6aadc1c44c14b20b2997c5d58e8647da62de6822f5ca9a`],
     }
   }
 };

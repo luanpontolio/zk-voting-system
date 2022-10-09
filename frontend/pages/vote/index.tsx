@@ -2,69 +2,37 @@ import { Button, Card } from "antd"
 import Meta from "antd/lib/card/Meta"
 import styled from "styled-components"
 import WalletButton from "../../src/contracts/wallet/connectWallet"
-import useConnectWallet from "../../src/contracts/wallet/connectWallet"
 import { DefaultTemplatePage } from "../template/DefaultTemplatePage"
 
 export default function Vote() {
-
+  const data = [
+    { name: 'Dog', value: '0x446f670000000000000000000000000000000000000000000000000000000000'},
+    { name: 'Cat', value: '0x4361740000000000000000000000000000000000000000000000000000000000'},
+    { name: 'Bird', value: '0x4269726400000000000000000000000000000000000000000000000000000000'},
+    { name: 'Chameleon', value: '0x4368616d656c656f6e0000000000000000000000000000000000000000000000'}
+  ];
 
   
+
   return (
       <DefaultTemplatePage>
         <WalletButton />
         <Content>
-          <CardContent
-            cover={
-              <img
-                alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          {data.map((d) => (
+            <CardContent
+              cover={
+                <img
+                  alt="example"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                />
+            }>
+              <Meta
+                title={d.name}
               />
-          }>
-            <Meta
-              title="Jairzinho"
-            />
-            <Button type="primary">Vote</Button>
-        </CardContent>
-        
-        <CardContent
-            cover={
-              <img
-                alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              />
-          }>
-            <Meta
-              title="Lulinha"
-            />
-            <Button type="primary">Vote</Button>
-        </CardContent>
-        
-        <CardContent
-            cover={
-              <img
-                alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              />
-          }>
-            <Meta
-              title="Cirinho"
-            />
-            <Button type="primary">Vote</Button>
-        </CardContent>
-        
-        <CardContent
-            cover={
-              <img
-                alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              />
-          }>
-            <Meta
-              title="Tabetinha"
-            />
-            <Button type="primary">Vote</Button>
+              <Button type="primary">Vote</Button>
           </CardContent>
-      </Content>
+          ))}
+        </Content>
       </DefaultTemplatePage>
   )
 }
