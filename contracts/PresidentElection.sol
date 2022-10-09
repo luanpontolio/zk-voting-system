@@ -3,19 +3,18 @@ pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Vote is Ownable {
+contract PresidentElection is Ownable {
   mapping (bytes32 => uint) public votesReceived;
-  mapping (bytes32 => bool) public registerVote;
+  mapping (address => bool) public allowedList;
 
-  bytes32[] private candidateList = [bytes32("Dog"), bytes32("Cat"), bytes32("Bird")];
+  bytes32[] private candidateList = [bytes32("Dog"), bytes32("Cat"), bytes32("Bird"), bytes32("Chameleon")];
 
-  function vote(bytes32 _hash, bytes32 _candidate) public {
+  function execute(bytes32 _candidate) public {
     require(isValidCandidate(_candidate), "Is not a valid candidate");
-    require(!registerVote[_hash], "You already vote!");
-    registerVote[_hash] = true;
+    require(!allowedList[_msgSender()], "Is no allowed to vote again");
     votesReceived[_candidate] += 1;
 
-    emit Voted(address(msg.sender));
+    emit Voted(_candidate, votesReceived[_candidate]);
   }
 
   function isValidCandidate(bytes32 _candidate) public view returns (bool) {
@@ -28,9 +27,15 @@ contract Vote is Ownable {
     return false;
   }
 
+  function getAllowed(address account_) public view returns (bool) {
+    return allowedList[account_];
+  }
+
   function getCandidates() public view returns (bytes32[] memory) {
     return candidateList;
   }
 
-  event Voted(address sender);
+  function _beforeVoting(address to) internal virtual {}
+
+  event Voted(bytes32 candidate, uint256 count);
 }
